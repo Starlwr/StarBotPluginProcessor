@@ -53,7 +53,8 @@ public class DependencyProcessMojo extends AbstractMojo {
         result.put("plugins", plugins);
         result.put("dependencies", dependencies);
 
-        if (!outputFile.getParentFile().mkdirs()) {
+        File parent = outputFile.getParentFile();
+        if (!parent.exists() && !parent.mkdirs()) {
             throw new MojoExecutionException("Failed create output directory: " + outputFile.getParentFile());
         }
 
